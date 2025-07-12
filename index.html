@@ -1,251 +1,96 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FORM SO BERANGKAS IC</title>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Form SO Berangkas</title>
+
+  <!-- WAJIB: Library Telegram WebApp -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
   <style>
     body {
-      margin: 0;
-      font-family: 'Lato', sans-serif;
-      background: linear-gradient(135deg, #3498db, #5dade2);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 15px;
-    }
-
-    h1 {
-      color: #fff;
-      margin-bottom: 30px;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-      text-align: center;
-    }
-
-    .form-container {
-      background: #ffffff;
+      font-family: Arial, sans-serif;
       padding: 20px;
-      border-radius: 16px;
-      width: 100%;
-      max-width: 700px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      background: #f4f4f4;
+    }
+    .form-container {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 500px;
+      margin: auto;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
       color: #333;
     }
-
     label {
+      font-weight: bold;
       display: block;
-      margin-top: 16px;
-      font-weight: 600;
+      margin-top: 15px;
     }
-
-    input, select {
+    input {
       width: 100%;
       padding: 10px;
-      margin-top: 6px;
       border-radius: 8px;
       border: 1px solid #ccc;
-      font-size: 16px;
-      background-color: #fdfdfd;
-      color: #333;
+      margin-top: 5px;
     }
-
-    input[readonly] {
-      background-color: #eaf6ff;
-      font-weight: bold;
-    }
-
-    .section-title {
-      margin-top: 30px;
-      font-size: 1.1em;
-      font-weight: bold;
-      color: #007bff;
-      border-top: 2px dashed #ccc;
-      padding-top: 10px;
-    }
-
-    .btn {
-      display: block;
+    button {
+      margin-top: 20px;
       width: 100%;
       padding: 14px;
-      margin-top: 20px;
-      font-size: 16px;
+      background: #28a745;
+      color: white;
       font-weight: bold;
       border: none;
       border-radius: 10px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
     }
-
-    .btn-hitung {
-      background-color: #007bff;
-      color: white;
-    }
-
-    .btn-hitung:hover {
-      background-color: #0056b3;
-    }
-
-    .btn-simpan {
-      background-color: #28a745;
-      color: white;
-    }
-
-    .btn-simpan:hover {
-      background-color: #1e7e34;
+    button:hover {
+      background-color: #218838;
     }
   </style>
 </head>
 <body>
+  <div class="form-container">
+    <h2>Form SO Berangkas</h2>
+    <form id="soForm">
+      <label>Nama Petugas</label>
+      <input type="text" name="petugas" required />
 
-  <h1>FORM SO BERANGKAS IC</h1>
+      <label>Kode Toko</label>
+      <input type="text" name="kodeToko" required />
 
-  <form class="form-container" onsubmit="return false;">
-    <label>Berangkas</label>
-    <select id="berangkas">
-      <option value="1">Berangkas 1</option>
-      <option value="2">Berangkas 2</option>
-    </select>
+      <label>Nama Toko</label>
+      <input type="text" name="namaToko" required />
 
-    <label>KODE TOKO</label>
-    <input type="text" id="kodeToko">
+      <label>Jumlah Uang Fisik</label>
+      <input type="number" name="uangFisik" required />
 
-    <label>NAMA TOKO</label>
-    <input type="text" id="namaToko">
-
-    <label>UANG FISIK</label>
-    <input type="text" id="uangFisik" value="0">
-
-    <label>UANG SALES</label>
-    <input type="text" id="uangSales" value="0">
-
-    <label>UANG KAS TOKO</label>
-    <input type="text" id="uangKasToko" value="0">
-
-    <label>UANG RRAK</label>
-    <input type="text" id="uangRrak" value="0">
-
-    <label>TOTAL</label>
-    <input type="text" id="total" readonly>
-
-    <div class="section-title">MODAL KASIR</div>
-
-    <label>INDUK</label>
-    <input type="text" id="induk" value="0">
-
-    <label>ANAK</label>
-    <input type="text" id="anak" value="0">
-
-    <label>BON PERSONIL</label>
-    <input type="text" id="bonPersonil" value="0">
-
-    <label>BON RRAK</label>
-    <input type="text" id="bonRrak" value="0">
-
-    <label>BA VARIANCE</label>
-    <input type="text" id="baVariance" value="0">
-
-    <label>TUKAR DC</label>
-    <input type="text" id="tukarDC" value="0">
-
-    <label>LAIN LAIN</label>
-    <input type="text" id="lainLain" value="0">
-
-    <label>KLAIM-KLAIM</label>
-    <input type="text" id="klaim" value="0">
-
-    <label>GRAND TOTAL</label>
-    <input type="text" id="grandTotal" readonly>
-
-    <button class="btn btn-hitung" onclick="calculateTotals()">HITUNG</button>
-    <button class="btn btn-simpan" onclick="sendToServer()">SIMPAN</button>
-  </form>
+      <button type="submit">Kirim</button>
+    </form>
+  </div>
 
   <script>
-    function toAngka(str) {
-      return parseInt(str.replace(/\./g, '')) || 0;
-    }
+    const form = document.getElementById("soForm");
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
 
-    function formatRupiah(angka) {
-      const number_string = angka.toString().replace(/\D/g, "");
-      return number_string.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-    }
+      const formData = new FormData(form);
+      const payload = {};
+      formData.forEach((value, key) => payload[key] = value);
 
-    function formatInputRupiah(evt) {
-      const el = evt.target;
-      const cleaned = el.value.replace(/\D/g, "");
-      const formatted = formatRupiah(cleaned);
-      el.value = formatted;
-    }
-
-    function calculateTotals() {
-      const get = id => toAngka(document.getElementById(id).value);
-
-      const uangFisik = get("uangFisik");
-      const uangSales = get("uangSales");
-      const uangKasToko = get("uangKasToko");
-      const uangRrak = get("uangRrak");
-      const induk = get("induk");
-      const anak = get("anak");
-      const bonPersonil = get("bonPersonil");
-      const bonRrak = get("bonRrak");
-      const baVariance = get("baVariance");
-      const tukarDC = get("tukarDC");
-      const lainLain = get("lainLain");
-      const klaim = get("klaim");
-
-      const total = (uangSales + uangKasToko + uangRrak) -
-                    (bonPersonil + bonRrak + baVariance + tukarDC + lainLain + klaim + induk + anak);
-      const grandTotal = uangFisik - total;
-
-      document.getElementById("total").value = formatRupiah(total);
-      document.getElementById("grandTotal").value = formatRupiah(grandTotal);
-    }
-
-    function sendToServer() {
-      const fields = [
-        "berangkas", "kodeToko", "namaToko", "uangFisik", "uangSales", "uangKasToko", "uangRrak",
-        "total", "induk", "anak", "bonPersonil", "bonRrak", "baVariance", "tukarDC", "lainLain", "klaim", "grandTotal"
-      ];
-
-      const data = {};
-      fields.forEach(id => {
-        const el = document.getElementById(id);
-        data[id] = el ? el.value : "";
-      });
-
-      fetch("http://192.168.1.100:5000/simpan", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-      })
-      .then(res => {
-        if (res.ok) {
-          alert("Data berhasil dikirim ke server.");
-        } else {
-          alert("Gagal mengirim data.");
-        }
-      })
-      .catch(() => alert("Tidak bisa terhubung ke server."));
-    }
-
-    // Jalankan format saat mengetik angka
-    window.onload = function () {
-      const inputIDs = [
-        "uangFisik", "uangSales", "uangKasToko", "uangRrak",
-        "induk", "anak", "bonPersonil", "bonRrak",
-        "baVariance", "tukarDC", "lainLain", "klaim"
-      ];
-
-      inputIDs.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) {
-          el.addEventListener("input", formatInputRupiah);
-        }
-      });
-    };
+      // Cek apakah dijalankan di Telegram WebApp
+      if (window.Telegram.WebApp) {
+        Telegram.WebApp.sendData(JSON.stringify(payload));  // Kirim ke bot
+        Telegram.WebApp.close();  // Tutup form
+      } else {
+        alert("❗ Form ini hanya bisa digunakan melalui Telegram WebApp.");
+      }
+    });
   </script>
-
 </body>
 </html>
